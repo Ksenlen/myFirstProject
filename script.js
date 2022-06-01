@@ -15,10 +15,10 @@ const isNumber = function (num) {
 };
 
 const asking = function () {
-    title = prompt('Как называется ваш проект?');
-    screens = prompt('Какие типы экранов нужно разработать?');
+    title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
+    screens = prompt('Какие типы экранов нужно разработать?', 'Простые, сложные');
 
-    do { screenPrice = prompt('Сколько будет стоить данная работа?'); }
+    do { screenPrice = prompt('Сколько будет стоить данная работа?', '20000'); }
     while (!isNumber(screenPrice));
 
     adaptive = confirm('Нужен ли адаптив на сайте?');
@@ -30,14 +30,18 @@ const showTypeOf = function (variable) {
 
 const getAllServicePrices = function () {
     let sum = 0;
-
+    let input = 0;
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
-            service1 = prompt('Какой дополнительный тип услуги нужен?')
+            service1 = prompt('Какой дополнительный тип услуги нужен?');
         } else if (i === 1) {
-            service2 = prompt('Какой дополнительный тип услуги нужен?')
+            service2 = prompt('Какой дополнительный тип услуги нужен?');
         }
-        sum += +prompt('Сколько это будет стоить?');
+        input = +prompt('Сколько это будет стоить');
+        while (!isNumber(input)) {
+            input = prompt('Попрорбуй ещё раз. Сколько это будет стоить');
+        }
+        sum += Number.parseInt(input);
     }
     return sum;
 };
@@ -72,7 +76,7 @@ const getRollbackMessage = function () {
 
 asking();
 allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice(screenPrice, allServicePrices);
+fullPrice = getFullPrice(parseFloat(screenPrice), allServicePrices);
 title = getTitle();
 servicePercentPrice = getServicePercentPrices(fullPrice, rollBack);
 
