@@ -23,7 +23,7 @@ function getFullPrice(screenPrice, allServicePrices) {
 };
 
 const getTitle = function (str) {
-    let lowerStr = str.toLowerCase();
+    let lowerStr = str.trim().toLowerCase();
     let upperStr = lowerStr.replace(/^[^a-zа-яё]*([a-zа-яё])/i, function (m) {
         return m.toUpperCase();
     });
@@ -67,7 +67,7 @@ console.log(servicePercentPrice);
 
 console.log(`Стоимость верстки экранов ${screenPrice} рублей/ долларов/гривен/юани`);
 console.log(`Стоимость разработки сайта ${fullPrice} рублей/ долларов/гривен/юани`);
-
+*/
 
 
 
