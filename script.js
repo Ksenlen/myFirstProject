@@ -2,6 +2,12 @@ let title = prompt('Как называется ваш проект?');
 let screens = prompt('Какие типы экранов нужно разработать?');
 let screenPrice = +prompt('Сколько будет стоить данная работа?');
 let adaptive = confirm('Нужен ли адаптив на сайте?');
+
+let allServicePrices;
+let fullPrice;
+let servicePercentPrice;
+
+
 let service1 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice1 = +prompt('Сколько это будет стоить?');
 let service2 = prompt('Какой дополнительный тип услуги нужен?');
@@ -22,8 +28,8 @@ function getFullPrice(screenPrice, allServicePrices) {
     return screenPrice + allServicePrices;
 };
 
-const getTitle = function (str) {
-    let lowerStr = str.trim().toLowerCase();
+const getTitle = function () {
+    let lowerStr = title.trim().toLowerCase();
     let upperStr = lowerStr.replace(/^[^a-zа-яё]*([a-zа-яё])/i, function (m) {
         return m.toUpperCase();
     });
@@ -46,13 +52,13 @@ const getRollbackMessage = function () {
     }
 };
 
-let allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
-let fullPrice = getFullPrice(screenPrice, allServicePrices);
-let title2 = getTitle(title);
-let servicePercentPrice = getServicePercentPrices(fullPrice, rollBack);
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+fullPrice = getFullPrice(screenPrice, allServicePrices);
+title = getTitle();
+servicePercentPrice = getServicePercentPrices(fullPrice, rollBack);
 
 
-showTypeOf(title2);
+showTypeOf(title);
 showTypeOf(fullPrice);
 showTypeOf(adaptive);
 
