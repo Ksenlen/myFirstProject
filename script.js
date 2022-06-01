@@ -1,27 +1,48 @@
-let title = prompt('Как называется ваш проект?');
-let screens = prompt('Какие типы экранов нужно разработать?');
-let screenPrice = +prompt('Сколько будет стоить данная работа?');
-let adaptive = confirm('Нужен ли адаптив на сайте?');
+let title;
+let screens;
+let screenPrice;
+let adaptive;
 
+const rollBack = 20;
 let allServicePrices;
 let fullPrice;
 let servicePercentPrice;
+let service1;
+let service2;
 
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
+};
 
-let service1 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice1 = +prompt('Сколько это будет стоить?');
-let service2 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice2 = +prompt('Сколько это будет стоить?');
+const asking = function () {
+    title = prompt('Как называется ваш проект?');
+    screens = prompt('Какие типы экранов нужно разработать?');
 
-const rollBack = 20;
+    screenPrice = prompt('Сколько будет стоить данная работа?');
 
+    while (!isNumber(screenPrice)) {
+        screenPrice = prompt('Сколько будет стоить данная работа?');
+    }
+
+    adaptive = confirm('Нужен ли адаптив на сайте?');
+};
 
 const showTypeOf = function (variable) {
     console.log(variable, typeof variable);
 };
 
-const getAllServicePrices = function (servPr1, servPr2) {
-    return servPr1 + servPr2;
+const getAllServicePrices = function () {
+    let sum = 0;
+
+    for (let i = 0; i < 2; i++) {
+        if (i === 0) {
+            service1 = prompt('Какой дополнительный тип услуги нужен?')
+        } else if (i === 1) {
+            service2 = prompt('Какой дополнительный тип услуги нужен?')
+        }
+        sum += +prompt('Сколько это будет стоить?');
+    }
+    return sum;
 };
 
 function getFullPrice(screenPrice, allServicePrices) {
@@ -52,7 +73,8 @@ const getRollbackMessage = function () {
     }
 };
 
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+asking();
+allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(screenPrice, allServicePrices);
 title = getTitle();
 servicePercentPrice = getServicePercentPrices(fullPrice, rollBack);
