@@ -24,9 +24,7 @@ const asking = function () {
     adaptive = confirm('Нужен ли адаптив на сайте?');
 };
 
-const showTypeOf = function (variable) {
-    console.log(variable, typeof variable);
-};
+
 
 const getAllServicePrices = function () {
     let sum = 0;
@@ -81,21 +79,22 @@ title = getTitle();
 servicePercentPrice = getServicePercentPrices(fullPrice, rollBack);
 
 
-showTypeOf(title);
-showTypeOf(fullPrice);
-showTypeOf(adaptive);
+
 
 console.log(screens.toLowerCase().split(', '));
 console.log(getRollbackMessage());
-console.log(servicePercentPrice);
 
-
-/*
-console.log(screens.length);
+console.log(screens.length)
 console.log(servicePercentPrice);
 
 console.log(`Стоимость верстки экранов ${screenPrice} рублей/ долларов/гривен/юани`);
 console.log(`Стоимость разработки сайта ${fullPrice} рублей/ долларов/гривен/юани`);
+
+/*
+;
+console.log(servicePercentPrice);
+
+
 */
 
 
