@@ -62,20 +62,27 @@ const appData = {
         } else {
             return 'Что то пошло не так';
         }
+    },
+    start: function () {
+        appData.asking();
+        appData.logger();
+    },
+    logger: function () {
+        console.log(appData.fullPrice);
+        console.log(appData.servicePercentPrice);
+        for (key in appData) {
+            console.log(appData[key]);
+        }
     }
 };
 
+appData.start();
 
 
-appData.asking();
 appData.allServicePrices = appData.getAllServicePrices();
 appData.fullPrice = appData.getFullPrice();
 appData.title = appData.getTitle();
 appData.servicePercentPrice = appData.getServicePercentPrices();
-
-
-console.log(appData.fullPrice);
-console.log(appData.servicePercentPrice);
 
 
 
