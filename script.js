@@ -7,7 +7,7 @@ const appData = {
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
-    services: {},
+    services: [],
 
     asking: function () {
         do {
@@ -39,18 +39,22 @@ const appData = {
                 price = prompt('Сколько это будет стоить');
             }
             while (!appData.isNumber(price));
-            appData.services[name] = +price;
+            appData.services.push({ id: i, name: name, price: price });
         }
         appData.adaptive = confirm('Нужен ли адаптив на сайте?');
     },
 
     addPrices: function () {
-        for (let screen of appData.screens) {
-            appData.screenPrice += +screen.price;
-        }
+        // for (let screen of appData.screens) {
+        //     appData.screenPrice += +screen.price;
+        // }
+        appData.screenPrice = appData.screens.reduce(function (total, amount) {
+            return total + (+amount.price);
+        }, 0);
 
-        for (let key in appData.services) {
-            appData.allServicePrices += appData.services[key];
+
+        for (let servis of appData.services) {
+            appData.allServicePrices += +servis.price;
         }
     },
 
