@@ -95,7 +95,11 @@ const appData = {
         });
     },
     addScreenBlock: function () {
+        screenBlocks = document.querySelectorAll('div.screen');
         const cloneScreenBlocks = screenBlocks[0].cloneNode(true);
+        const cloneInput = cloneScreenBlocks.querySelector('input');
+        console.dir(cloneInput);
+        cloneInput.value = '';
         screenBlocks[screenBlocks.length - 1].after(cloneScreenBlocks);
     },
     addPrices: function () {
