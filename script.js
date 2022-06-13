@@ -36,26 +36,11 @@ const appData = {
 
     init: function () {
         appData.addTitle();
-        startBtn.addEventListener('click', appData.checkBeforeStart);
+        startBtn.addEventListener('click', appData.start);
         btnPlus.addEventListener('click', appData.addScreenBlock);
         appData.getRollback();
     },
 
-    checkBeforeStart: function () {
-        screenBlocks = document.querySelectorAll('div.screen');
-        screenBlocks.forEach(function (screen) {
-            const select = screen.querySelector('select');
-            const input = screen.querySelector('input');
-            if (select.value == '') {
-                alert('Не введен тип экранов');
-            }
-            else if (input.value == '') {
-                alert('Не введено количество экранов');
-            }
-            else appData.start();
-
-        });
-    },
     addTitle: function () {
         document.title = htmlTitle.textContent;
     },
@@ -73,14 +58,17 @@ const appData = {
             const select = screen.querySelector('select');
             const input = screen.querySelector('input');
             const selectName = select.options[select.selectedIndex].textContent;
-            appData.screens.push({
-                id: index,
-                name: selectName,
-                count: +input.value,
-                price: +select.value * +input.value
-            });
+            if (input.value !== "" && select.value !== "") {
+                appData.screens.push({
+                    id: index,
+                    name: selectName,
+                    price: +select.value * +input.value,
+                    count: +input.value
+                });
+            } else {
+                appData.screens.splice(0);
+            }
 
-            console.dir(input);
         });
 
 
@@ -147,16 +135,17 @@ const appData = {
         }
     },
     start: function () {
-        appData.addScreens();
-        appData.addServisec();
+        let screens = document.querySelector('.screen');
+        let input = screens.querySelector('input');
 
-        appData.addPrices();
-
-        // appData.getServicePercentPrices();
-        // appData.logger();
-
-        appData.showResult();
-    },
+        if (input.value !== "") {
+            appData.addScreens();
+            appData.addServisec();
+            appData.addPrices();
+            appData.showResult();
+            // appData.logger();
+        }
+    }
 };
 
 appData.init();
