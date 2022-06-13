@@ -98,7 +98,6 @@ const appData = {
         screenBlocks = document.querySelectorAll('div.screen');
         const cloneScreenBlocks = screenBlocks[0].cloneNode(true);
         const cloneInput = cloneScreenBlocks.querySelector('input');
-        console.dir(cloneInput);
         cloneInput.value = '';
         screenBlocks[screenBlocks.length - 1].after(cloneScreenBlocks);
     },
@@ -128,7 +127,7 @@ const appData = {
         };
         rollbackInput.addEventListener("input", changeRollback);
         rollbackInput.addEventListener("change", changeRollback);
-        console.log(appData);
+
     },
 
 
