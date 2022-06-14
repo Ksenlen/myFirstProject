@@ -125,12 +125,16 @@ const appData = {
             rollbackSpan.textContent = event.target.value;
             appData.rollBack = +event.target.value;
         };
-        rollbackInput.addEventListener("input", changeRollback);
+
+
         rollbackInput.addEventListener("change", changeRollback);
-
+        rollbackInput.addEventListener("input", function (event) {
+            rollbackSpan.textContent = event.target.value;
+            appData.rollBack = +event.target.value;
+            appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollBack / 100));
+            rollbackCount.value = appData.servicePercentPrice;
+        });
     },
-
-
 
     logger: function () {
         for (let key in appData) {
@@ -152,6 +156,7 @@ const appData = {
 };
 
 appData.init();
+
 
 
 
